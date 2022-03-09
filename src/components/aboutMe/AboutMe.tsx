@@ -28,12 +28,12 @@ const AboutMe = ({ currentScrollY }: AboutMeProps) => {
               "linear-gradient(358.4deg, rgba(249,151,119,1)-2.1%, rgba(98,58,162,1) 90%)",
             backgroundClip: "text",
             WebkitTextFillColor: "transparent",
-            opacity: ((currentScrollY - 1100) * 100) / 350 / 100,
+            opacity: ((currentScrollY - 1000) * 100) / 400 / 100,
           }}
         >
-          <Box sx={{ pb: 10 }}>
-            Some experiences in front-end development by working with a senior.
-          </Box>
+          Some experiences in front-end development by working with a senior.
+          <br />
+          <br />
           Interested in programming from making my own Minecraft server.
         </Typography>
       </Box>
