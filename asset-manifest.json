@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/koranat.github.io/static/js/main.9afee2a4.js",
+    "main.js": "/koranat.github.io/static/js/main.a448c88c.js",
     "static/js/787.1529b5c7.chunk.js": "/koranat.github.io/static/js/787.1529b5c7.chunk.js",
     "index.html": "/koranat.github.io/index.html",
-    "main.9afee2a4.js.map": "/koranat.github.io/static/js/main.9afee2a4.js.map",
+    "main.a448c88c.js.map": "/koranat.github.io/static/js/main.a448c88c.js.map",
     "787.1529b5c7.chunk.js.map": "/koranat.github.io/static/js/787.1529b5c7.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.9afee2a4.js"
+    "static/js/main.a448c88c.js"
   ]
 }
