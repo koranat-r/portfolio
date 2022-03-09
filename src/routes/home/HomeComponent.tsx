@@ -2,6 +2,7 @@ import React from "react";
 
 import Intro from "../../components/intro/Intro";
 import AboutMe from "../../components/aboutMe/AboutMe";
+import WorkInProgress from "../../components/workInProgress/WorkInProgress";
 
 const Home = () => {
   const [currentScrollY, setCurrentScrollY] = React.useState(0);
@@ -18,6 +19,7 @@ const Home = () => {
     <>
       <Intro currentScrollY={currentScrollY} />
       <AboutMe currentScrollY={currentScrollY} />
+      <WorkInProgress />
     </>
   );
 };
