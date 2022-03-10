@@ -15,12 +15,12 @@ const HeaderToolbar = () => {
   });
 
   const getTextColor = () => {
-    if (currentScrollY >= 1400) return "black";
+    if (currentScrollY >= 5125) return "black";
     return "white";
   };
 
   const getTextLabelColor = () => {
-    if (currentScrollY >= 1400) return "#616161";
+    if (currentScrollY >= 5125) return "#616161";
     return "#e0e0e0";
   };
 

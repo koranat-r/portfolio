@@ -1,5 +1,7 @@
-import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
+import { Box } from "@mui/system";
+
+import { makeOpacityAnimation } from "../../utils/makeOpacityAnimation";
 
 interface IntroProps {
   currentScrollY: number;
@@ -10,7 +12,6 @@ const Intro = ({ currentScrollY }: IntroProps) => {
     <>
       <Box
         sx={{
-          backgroundColor: "black",
           height: 1200,
           px: 4,
         }}
@@ -30,7 +31,6 @@ const Intro = ({ currentScrollY }: IntroProps) => {
             variant="h1"
             color="white"
             sx={{
-              fontWeight: 800,
               pb: 1,
               backgroundColor: "#4158D0",
               backgroundImage:
@@ -43,23 +43,20 @@ const Intro = ({ currentScrollY }: IntroProps) => {
           </Typography>
           <Typography
             variant="h5"
-            color="#eeeeee"
+            color="white"
             sx={{
-              fontWeight: 600,
               maxWidth: 500,
-              opacity: ((currentScrollY - 150) * 100) / 300 / 100,
+              opacity: makeOpacityAnimation({
+                currentScrollY,
+                startEffectAtY: 100,
+                duration: 300,
+              }),
             }}
           >
             Guy Koranat is a student who wants to be a front-end developer.
           </Typography>
         </Box>
       </Box>
-      <Box
-        sx={{
-          backgroundColor: "black",
-          height: 200,
-        }}
-      ></Box>
     </>
   );
 };
