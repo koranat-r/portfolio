@@ -47,7 +47,7 @@ const AboutMe = ({ currentScrollY }: AboutMeProps) => {
       <Box sx={{ height: 500 }}></Box>
       <Box
         sx={{
-          height: 3000,
+          height: 3250,
         }}
       >
         <Box
