@@ -10,38 +10,39 @@ interface AboutMeProps {
 interface SkillTextProps {
   text: string;
   index: number;
+  currentScrollY: number;
 }
 
 const skills = ["React", "TypeScript", "MUI", "GraphQL"];
 
-const AboutMe = ({ currentScrollY }: AboutMeProps) => {
-  const SkillText = ({ text, index }: SkillTextProps) => {
-    const calculateScaleSize = () => {
-      const scale = (currentScrollY - index * 500 - 3000) / -500;
-      if (scale > 3) return 3;
-      if (scale > 1) return scale;
-      return 1;
-    };
-
-    return (
-      <Typography
-        variant="h2"
-        color={calculateScaleSize() > 1.5 ? "white" : "#979797"}
-        sx={{
-          opacity: makeOpacityAnimation({
-            currentScrollY,
-            startEffectAtY: 1500 + index * 500 + 100,
-            duration: 200,
-          }),
-          transform: `matrix(${calculateScaleSize()}, 0, 0, ${calculateScaleSize()}, 0, 0)`,
-        }}
-        key={index}
-      >
-        {text}
-      </Typography>
-    );
+const SkillText = ({ text, index, currentScrollY }: SkillTextProps) => {
+  const calculateScaleSize = () => {
+    const scale = (currentScrollY - index * 500 - 3000) / -250;
+    if (scale > 5) return 5;
+    if (scale > 1) return scale;
+    return 1;
   };
 
+  return (
+    <Typography
+      variant="h2"
+      color={calculateScaleSize() > 1.5 ? "white" : "#979797"}
+      sx={{
+        opacity: makeOpacityAnimation({
+          currentScrollY,
+          startEffectAtY: 1800 + index * 600,
+          duration: 200,
+        }),
+        transform: `matrix(${calculateScaleSize()}, 0, 0, ${calculateScaleSize()}, 0, 0)`,
+      }}
+      key={index}
+    >
+      {text}
+    </Typography>
+  );
+};
+
+const AboutMe = ({ currentScrollY }: AboutMeProps) => {
   return (
     <>
       <Box sx={{ height: 500 }}></Box>
@@ -68,7 +69,12 @@ const AboutMe = ({ currentScrollY }: AboutMeProps) => {
             }}
           >
             {skills.map((text, index) => (
-              <SkillText text={text} index={index} key={index} />
+              <SkillText
+                text={text}
+                index={index}
+                currentScrollY={currentScrollY}
+                key={index}
+              />
             ))}
           </Box>
         </Box>
