@@ -1,13 +1,37 @@
+import React from "react";
+
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 
 import { makeOpacityAnimation } from "../../utils/makeOpacityAnimation";
+import ScrollWrapper from "../scrollWrapper/ScrollWrapper";
 
-interface IntroProps {
-  currentScrollY: number;
-}
+const AnimationDescriptionText = () => {
+  const [currentScrollY, setCurrentScrollY] = React.useState(0);
 
-const Intro = ({ currentScrollY }: IntroProps) => {
+  const handleScroll = () => setCurrentScrollY(window.scrollY);
+
+  return (
+    <ScrollWrapper handleScroll={handleScroll}>
+      <Typography
+        variant="h5"
+        color="white"
+        sx={{
+          maxWidth: 500,
+          opacity: makeOpacityAnimation({
+            currentScrollY,
+            startEffectAtY: 100,
+            duration: 300,
+          }),
+        }}
+      >
+        Guy Koranat is a student who wants to be a front-end developer.
+      </Typography>
+    </ScrollWrapper>
+  );
+};
+
+const Intro = () => {
   return (
     <>
       <Box
@@ -41,20 +65,7 @@ const Intro = ({ currentScrollY }: IntroProps) => {
           >
             Hello!
           </Typography>
-          <Typography
-            variant="h5"
-            color="white"
-            sx={{
-              maxWidth: 500,
-              opacity: makeOpacityAnimation({
-                currentScrollY,
-                startEffectAtY: 100,
-                duration: 300,
-              }),
-            }}
-          >
-            Guy Koranat is a student who wants to be a front-end developer.
-          </Typography>
+          <AnimationDescriptionText />
         </Box>
       </Box>
     </>

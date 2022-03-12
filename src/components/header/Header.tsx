@@ -1,37 +1,36 @@
-import React from "react";
-
 import styled from "@emotion/styled";
 import { AppBar, Container, useScrollTrigger } from "@mui/material";
+
 import HeaderToolbar from "./HeaderToolbar";
 
-const bgColorTransparency = "#eeeeee40";
+const bgColorTransparent = "#eeeeee40";
 
 const Header = () => {
   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 0 });
 
   const StyledAppBar = styled(AppBar)(({ theme }) => ({
     backdropFilter: trigger ? "blur(16px)" : undefined,
-    "@keyframes headerScrollTriggerAniamtion": {
+    "@keyframes headerScrollingAnimation": {
       from: {
         backgroundColor: "black",
       },
       to: {
-        backgroundColor: bgColorTransparency,
+        backgroundColor: bgColorTransparent,
       },
     },
     "@keyframes headerStaticAnimation": {
       "0%": {
-        backgroundColor: bgColorTransparency,
+        backgroundColor: bgColorTransparent,
       },
       "100%": {
         backgroundColor: "black",
       },
     },
     animationName: trigger
-      ? "headerScrollTriggerAniamtion"
+      ? "headerScrollingAnimation"
       : "headerStaticAnimation",
     animationDuration: "500ms",
-    backgroundColor: trigger ? bgColorTransparency : undefined,
+    backgroundColor: trigger ? bgColorTransparent : undefined,
   }));
 
   return (
