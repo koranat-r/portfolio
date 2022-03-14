@@ -7,22 +7,26 @@ import { makeOpacityAnimation } from "../../utils/makeOpacityAnimation";
 import ScrollWrapper from "../scrollWrapper/ScrollWrapper";
 
 const AnimationDescriptionText = () => {
-  const [currentScrollY, setCurrentScrollY] = React.useState(0);
-
-  const handleScroll = () => setCurrentScrollY(window.scrollY);
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY < 700)
+      document.getElementById(
+        "about-me-subtitle"
+      )!.style.opacity = `${makeOpacityAnimation({
+        currentScrollY,
+        startEffectAtY: 100,
+        duration: 400,
+      })}`;
+  };
 
   return (
     <ScrollWrapper handleScroll={handleScroll}>
       <Typography
+        id="about-me-subtitle"
         variant="h5"
         color="white"
         sx={{
           maxWidth: 500,
-          opacity: makeOpacityAnimation({
-            currentScrollY,
-            startEffectAtY: 100,
-            duration: 300,
-          }),
         }}
       >
         Guy Koranat is a student who wants to be a front-end developer.

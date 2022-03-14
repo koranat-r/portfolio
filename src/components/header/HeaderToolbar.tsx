@@ -1,24 +1,20 @@
-import React from "react";
-
 import { Button, Toolbar, Typography } from "@mui/material";
 import { Box } from "@mui/system";
+
 import ScrollWrapper from "../scrollWrapper/ScrollWrapper";
 
 const pages = ["Home", "Work", "Contact"];
 
 const HeaderToolbar = () => {
-  const [currentScrollY, setCurrentScrollY] = React.useState(0);
-
-  const handleScroll = () => setCurrentScrollY(window.scrollY);
-
-  const getTextColor = () => {
-    if (currentScrollY >= 4980) return "black";
-    return "white";
-  };
-
-  const getTextLabelColor = () => {
-    if (currentScrollY >= 4980) return "#616161";
-    return "#e0e0e0";
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    const textTitleColor = () => (currentScrollY >= 4980 ? "black" : "white");
+    const textLabelColor = () =>
+      currentScrollY >= 4980 ? "#616161" : "#e0e0e0";
+    document.getElementById("header-title")!.style!.color = textTitleColor();
+    document
+      .querySelectorAll<HTMLElement>("#header-caption, #header-button")
+      .forEach((element) => (element.style.color = textLabelColor()));
   };
 
   return (
@@ -33,9 +29,10 @@ const HeaderToolbar = () => {
           }}
         >
           <Typography
+            id="header-caption"
             variant="caption"
+            color="#e0e0e0"
             sx={{
-              color: getTextLabelColor(),
               transition: "0.5s all",
               fontWeight: 300,
               mb: -1,
@@ -44,8 +41,9 @@ const HeaderToolbar = () => {
             Portfolio of
           </Typography>
           <Typography
+            id="header-title"
+            color="white"
             sx={{
-              color: getTextColor(),
               transition: "0.5s all",
               fontWeight: 600,
             }}
@@ -63,12 +61,13 @@ const HeaderToolbar = () => {
         >
           {pages.map((page) => (
             <Button
+              id="header-button"
               key={page}
               sx={{
-                color: getTextColor(),
                 transition: "0.1s all",
                 pr: 0,
                 pl: 4,
+                color: "#e0e0e0",
               }}
             >
               {page}

@@ -13,29 +13,35 @@ interface SkillTextProps {
 const skills = ["React", "TypeScript", "MUI", "GraphQL"];
 
 const SkillText = ({ text, index }: SkillTextProps) => {
-  const [currentScrollY, setCurrentScrollY] = React.useState(0);
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
 
-  const handleScroll = () => setCurrentScrollY(window.scrollY);
+    if (currentScrollY > 1590 && currentScrollY < 4980) {
+      const calculateScaleSize = () => {
+        const scale = (currentScrollY - index * 500 - 3000) / -250;
+        if (scale > 5) return 5;
+        if (scale > 1) return scale;
+        return 1;
+      };
+      const textElement = document.getElementById(`skill-text-${index}`);
 
-  const calculateScaleSize = () => {
-    const scale = (currentScrollY - index * 500 - 3000) / -250;
-    if (scale > 5) return 5;
-    if (scale > 1) return scale;
-    return 1;
+      textElement!.style.color =
+        calculateScaleSize() > 1.6 ? "white" : "#979797";
+      textElement!.style.opacity = `${makeOpacityAnimation({
+        currentScrollY,
+        startEffectAtY: 1800 + index * 600,
+        duration: 200,
+      })}`;
+      textElement!.style.transform = `matrix(${calculateScaleSize()}, 0, 0, ${calculateScaleSize()}, 0, 0)`;
+    }
   };
 
   return (
     <ScrollWrapper handleScroll={handleScroll}>
       <Typography
+        id={`skill-text-${index}`}
         variant="h2"
-        color={calculateScaleSize() > 1.6 ? "white" : "#979797"}
         sx={{
-          opacity: makeOpacityAnimation({
-            currentScrollY,
-            startEffectAtY: 1800 + index * 600,
-            duration: 200,
-          }),
-          transform: `matrix(${calculateScaleSize()}, 0, 0, ${calculateScaleSize()}, 0, 0)`,
           transition: "0.1s all",
         }}
         key={index}
