@@ -16,7 +16,7 @@ const SkillText = ({ text, index }: SkillTextProps) => {
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
 
-    if (currentScrollY > 1590 && currentScrollY < 4980) {
+    if (currentScrollY > 1200 && currentScrollY < 4980) {
       const calculateScaleSize = () => {
         const scale = (currentScrollY - index * 500 - 3000) / -250;
         if (scale > 5) return 5;

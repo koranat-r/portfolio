@@ -6,7 +6,7 @@ import { Box } from "@mui/system";
 import { makeOpacityAnimation } from "../../utils/makeOpacityAnimation";
 import ScrollWrapper from "../scrollWrapper/ScrollWrapper";
 
-const AnimationDescriptionText = () => {
+const AnimationSubtitleText = () => {
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
     if (currentScrollY < 700)
@@ -27,6 +27,7 @@ const AnimationDescriptionText = () => {
         color="white"
         sx={{
           maxWidth: 500,
+          opacity: 0,
         }}
       >
         Guy Koranat is a student who wants to be a front-end developer.
@@ -69,7 +70,7 @@ const Intro = () => {
           >
             Hello!
           </Typography>
-          <AnimationDescriptionText />
+          <AnimationSubtitleText />
         </Box>
       </Box>
     </>
