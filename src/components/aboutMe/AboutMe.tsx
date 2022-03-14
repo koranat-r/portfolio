@@ -19,7 +19,7 @@ const SkillText = ({ text, index }: SkillTextProps) => {
     const currentScrollY = window.scrollY;
 
     if (!isMobile()) {
-      if (currentScrollY > 700 && currentScrollY < 4980) {
+      if (currentScrollY < 4980) {
         const calculateScaleSize = () => {
           const scale = (currentScrollY - index * 500 - 3000) / -250;
           if (scale > 1) return scale;
@@ -62,7 +62,7 @@ const AboutMe = () => {
       <Box sx={{ height: 500 }}></Box>
       <Box
         sx={{
-          height: { xs: 500, md: 3250 },
+          height: { xs: 500, sm: 3250 },
         }}
       >
         <Box
