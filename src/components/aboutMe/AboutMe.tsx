@@ -1,8 +1,10 @@
+import React from "react";
+
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 
+import { isMobile } from "../../utils/isMobile";
 import { makeOpacityAnimation } from "../../utils/makeOpacityAnimation";
-import React from "react";
 import ScrollWrapper from "../scrollWrapper/ScrollWrapper";
 
 interface SkillTextProps {
@@ -16,23 +18,24 @@ const SkillText = ({ text, index }: SkillTextProps) => {
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
 
-    if (currentScrollY > 1200 && currentScrollY < 4980) {
-      const calculateScaleSize = () => {
-        const scale = (currentScrollY - index * 500 - 3000) / -250;
-        if (scale > 5) return 5;
-        if (scale > 1) return scale;
-        return 1;
-      };
-      const textElement = document.getElementById(`skill-text-${index}`);
+    if (!isMobile()) {
+      if (currentScrollY > 700 && currentScrollY < 4980) {
+        const calculateScaleSize = () => {
+          const scale = (currentScrollY - index * 500 - 3000) / -250;
+          if (scale > 1) return scale;
+          return 1;
+        };
+        const textElement = document.getElementById(`skill-text-${index}`);
 
-      textElement!.style.color =
-        calculateScaleSize() > 1.6 ? "white" : "#979797";
-      textElement!.style.opacity = `${makeOpacityAnimation({
-        currentScrollY,
-        startEffectAtY: 1800 + index * 600,
-        duration: 200,
-      })}`;
-      textElement!.style.transform = `matrix(${calculateScaleSize()}, 0, 0, ${calculateScaleSize()}, 0, 0)`;
+        textElement!.style.color =
+          calculateScaleSize() > 1.6 ? "white" : "#979797";
+        textElement!.style.opacity = `${makeOpacityAnimation({
+          currentScrollY,
+          startEffectAtY: 1800 + index * 600,
+          duration: 200,
+        })}`;
+        textElement!.style.transform = `matrix(${calculateScaleSize()}, 0, 0, ${calculateScaleSize()}, 0, 0)`;
+      }
     }
   };
 
@@ -42,6 +45,7 @@ const SkillText = ({ text, index }: SkillTextProps) => {
         id={`skill-text-${index}`}
         variant="h2"
         sx={{
+          color: "white",
           transition: "0.1s all",
         }}
         key={index}
@@ -58,7 +62,7 @@ const AboutMe = () => {
       <Box sx={{ height: 500 }}></Box>
       <Box
         sx={{
-          height: 3250,
+          height: { xs: 500, md: 3250 },
         }}
       >
         <Box

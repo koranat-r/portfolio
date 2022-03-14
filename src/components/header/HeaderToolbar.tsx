@@ -1,6 +1,7 @@
 import { Button, Toolbar, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 
+import { isMobile } from "../../utils/isMobile";
 import ScrollWrapper from "../scrollWrapper/ScrollWrapper";
 
 const pages = ["Home", "Work", "Contact"];
@@ -8,9 +9,11 @@ const pages = ["Home", "Work", "Contact"];
 const HeaderToolbar = () => {
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
-    const textTitleColor = () => (currentScrollY >= 4980 ? "black" : "white");
-    const textLabelColor = () =>
-      currentScrollY >= 4980 ? "#616161" : "#e0e0e0";
+    const isNeedLightTheme = () =>
+      isMobile() ? currentScrollY >= 2222 : currentScrollY >= 4980;
+    const textTitleColor = () => (isNeedLightTheme() ? "black" : "white");
+    const textLabelColor = () => (isNeedLightTheme() ? "#616161" : "#e0e0e0");
+
     document.getElementById("header-title")!.style!.color = textTitleColor();
     document
       .querySelectorAll<HTMLElement>("#header-caption, #header-button")
